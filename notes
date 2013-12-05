@@ -1,0 +1,38 @@
+
+
+# xxx x y xx xxxxy yx xxy yyyy ... y y y y y y y y ... xy
+
+# learner learns x, almost x#				(only has x# twice in "xxx")
+# learner sees x, increases persistence
+# learner almost notices y
+# learner sees x, learns xx			(no sublearning infinite recursion, right? make sure this is just x#)
+# learner sees x#, notices y 			(didn't see just x, because x# is more abstract and still correct)
+# learner sees x, learns y, notices association of y to x (because complex symbol persistence is sum of subsymbols?)
+# learner sees x# y, sublearns y to x  		(because x has higher persistence)
+# learner sees y, learns y#
+#...
+# learner learns y better than x
+#...
+# learner sees xy
+
+# See -> learn -> associate -> notice
+
+#When searching through a memoryspace for a symbol pattern, since the best pattern is that with the highest persistence,
+#and following symbol association links sums symbol persistences, keep root of symbol tree highest persistence. More
+#familiar symbols will be recognized before unfamiliar, and high-levels of abstraction will be preferred over low-levels.
+
+#SEARCH:
+#for each symbol in sequence
+	#if symbol has valid value (so perisitence is > 0. Compare to each learned symbol)
+		#P := highest persistence possible for phrase surrounding symbol
+			#how? Search association set for next symbol
+#"See" all P
+
+#Data structure node is "association"
+#association has a target (or child) symbol, and a persistence that that is added to parent's symbol's persistence
+	#associations correct the issue of pointers directly to other symbols calculating the total persistence for something like xy.
+	#Would it be x.persistence + y.persistence? Just x's, just y's? With a pointer to a container of the target association, it
+	#can be a more versatile x.persistence + association-to-y.persistence, and y can have a persistence of its own.
+
+#each association also has an association Set to all of its own sub-associations
+#a top level association set is maintained by the memoryspace
