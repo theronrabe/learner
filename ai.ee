@@ -3,6 +3,7 @@
 	include "system" []
 	include "E.List" []
 	include "E.Sets" []
+	include "E.Continuations" []
 	include "../ai/Learner" []
 	include "../ai/Teacher" []
 
@@ -15,13 +16,13 @@
 	Set teach {} {
 		Teacher [] => symbols;	#get continuation of symbols' evaluated Set
 
-		if {symbols$ - 16;$ == 'Q} {... symbols$; quit []} {}
+		if {symbols$ - 8;$ == 'Q} {... symbols$; quit []} {}
 
 		prints "__________________________________\n\n";
 
 		given i = 0;
-		while {i$ < (symbols$ - 8)$} {
-			given symVal = (symbols$ - (i$+2)*8);
+		while {i$ < symbols$$} {
+			given symVal = (symbols$ - (i$+1)*8);
 
 			P = Learner.observe [symVal$];
 

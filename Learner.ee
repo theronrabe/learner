@@ -22,7 +22,7 @@
 			given start:
 				0
 				sublist$ [0]
-				while {given now: now$ < start$ - 16} {
+				while {given now: now$ < start$ - 8} {
 					=> given assoc;
 					if {assoc->Association.symbol$ == sym$$} {
 						given ret = assoc$;
@@ -90,7 +90,11 @@
 		public Set observe {sym} {
 			prints "I am observing\t";
 			given aSym = sym$;
-			(Sets.count [`{see [knowledge$, aSym$]}, 0]) => given count;
+
+			capture:
+				(Sets.count [`{see [knowledge$, aSym$]}, 1]) => given count;
+			... capture$;
+
 			if {count$} {
 				count$
 			} {
